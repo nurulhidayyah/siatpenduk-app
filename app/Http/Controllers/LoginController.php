@@ -21,9 +21,9 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
         if (Auth::attempt($credentials)) {
-            if (auth()->user()->is_active == 1) {
+            if (auth()->user()->is_active == 2) {
                 $request->session()->regenerate();
-                return redirect()->intended('/dashboard');
+                return redirect()->intended('/setting/profile');
             } else {
                 request()->session()->invalidate();
                 request()->session()->regenerateToken();

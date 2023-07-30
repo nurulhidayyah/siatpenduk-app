@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Active;
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,7 +25,32 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123'),
             'phone' => '081298021608',
             'role_id' => 1,
-            'is_active' => true
+            'is_active' => 2
+        ]);
+        User::create([
+            'nama' => 'Kades',
+            'email' => 'kades@gmail.com',
+            'password' => Hash::make('123'),
+            'phone' => '081298021608',
+            'role_id' => 2,
+            'is_active' => 2
+        ]);
+
+        UserRole::create([
+            'role' => 'Administrator'
+        ]);
+        UserRole::create([
+            'role' => 'Kepala Desa'
+        ]);
+        UserRole::create([
+            'role' => 'Masyarakat'
+        ]);
+
+        Active::create([
+            'active' => 'Belum Aktif'
+        ]);
+        Active::create([
+            'active' => 'Aktif'
         ]);
     }
 }

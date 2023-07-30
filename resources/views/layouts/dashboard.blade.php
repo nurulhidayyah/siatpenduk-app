@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>@yield('title')</title>
 
     <!-- Custom fonts for this template-->
     <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -38,7 +38,7 @@
                 @include('partials.topbar')
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid mb-5">
                     @yield('container')
                 </div>
                 <!-- /.container-fluid -->
@@ -105,6 +105,58 @@
     <!-- Page level custom scripts -->
     <script src="/assets/js/demo/chart-area-demo.js"></script>
     <script src="/assets/js/demo/chart-pie-demo.js"></script>
+
+    <script>
+        $('.custom-file-input').on('change', function() {
+            let fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+        });
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                imgPreview.src = oFREvent.target.result
+            }
+        }
+
+        function previewImage1() {
+            const image = document.querySelector('#lampiran_1');
+            const imgPreview1 = document.querySelector('.img-preview1');
+
+            imgPreview1.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                imgPreview1.src = oFREvent.target.result
+            }
+        }
+
+        function previewImage2() {
+            const image = document.querySelector('#lampiran_2');
+            const imgPreview2 = document.querySelector('.img-preview2');
+
+            imgPreview2.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                imgPreview2.src = oFREvent.target.result
+            }
+        }
+
+        
+        
+    </script>
 
 </body>
 

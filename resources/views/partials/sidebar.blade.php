@@ -9,53 +9,87 @@
         <div class="sidebar-brand-text mx-3">siatpenduk</div>
     </a>
 
+
+    @can('masyarakat')
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
+            <a class="nav-link pb-0" href="/dashboard">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+        <li class="nav-item {{ Request::is('dashboard/pengajuan*') ? 'active' : '' }}">
+            <a class="nav-link pb-0" href="/dashboard/pengajuan">
+                <i class="fas fa-envelope"></i>
+                <span>Pengajuan Surat</span></a>
+        </li>
+    @endcan
+
+    @can('admin')
+        <!-- Divider -->
+        <hr class="sidebar-divider mt-3">
+
+        <div class="sidebar-heading">
+            Administrator
+        </div>
+
+        <li class="nav-item {{ Request::is('admin/pengajuan*') ? 'active' : '' }}">
+            <a class="nav-link pb-0" href="/admin/pengajuan">
+                <i class="fas fa-envelope-open-text"></i>
+                <span>Pengajuan Masuk</span></a>
+        </li>
+
+        <li class="nav-item {{ Request::is('admin/pengguna*') ? 'active' : '' }}">
+            <a class="nav-link pb-0" href="/admin/pengguna">
+                <i class="fas fa-users"></i>
+                <span>Pengguna</span></a>
+        </li>
+
+        <li class="nav-item {{ Request::is('admin/riwayat*') ? 'active' : '' }}">
+            <a class="nav-link pb-0" href="/admin/riwayat">
+                <i class="fas fa-history"></i>
+                <span>Riwayat</span></a>
+        </li>
+    @endcan
+
+    @can('kades')
+        <!-- Divider -->
+        <hr class="sidebar-divider mt-3">
+
+        <div class="sidebar-heading">
+            Kepala Desa
+        </div>
+
+        <li class="nav-item {{ Request::is('kades/validasi*') ? 'active' : '' }}">
+            <a class="nav-link pb-0" href="/kades/validasi">
+                <i class="fas fa-envelope-open-text"></i>
+                <span>Butuh Acc</span></a>
+        </li>
+    @endcan
+
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="sidebar-divider mt-3">
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="assets/index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
     <div class="sidebar-heading">
-        Interface
+        Setting
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="assets/#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-clipboard-list"></i>
-            <span>Layanan</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="assets/buttons.html">Umum</a>
-                <a class="collapse-item" href="assets/cards.html">Bersalin</a>
-                <a class="collapse-item" href="assets/cards.html">KB</a>
-                <a class="collapse-item" href="assets/cards.html">Imunisasi</a>
-                <a class="collapse-item" href="assets/cards.html">Balita</a>
-                <a class="collapse-item" href="assets/cards.html">Kehamilan</a>
-                <a class="collapse-item" href="assets/cards.html">Nifas</a>
-            </div>
-        </div>
+    <li class="nav-item {{ Request::is('setting/profile') ? 'active' : '' }}">
+        <a class="nav-link pb-0" href="/setting/profile">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Profile</span></a>
     </li>
-
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="user/pasien">
-            <i class="fas fa-user-injured"></i>
-            <span>Pasien</span></a>
+    <li class="nav-item {{ Request::is('setting/profile/' . auth()->user()->id . '/edit') ? 'active' : '' }}">
+        <a class="nav-link pb-0" href="/setting/profile/{{ auth()->user()->id }}/edit">
+            <i class="fas fa-fw fa-user-edit"></i>
+            <span>Edit Profile</span></a>
     </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+    <li class="nav-item {{ Request::is('setting/ubah_password*') ? 'active' : '' }}">
+        <a class="nav-link pb-0" href="/setting/ubah_password">
+            <i class="fas fa-fw fa-key"></i>
+            <span>Ubah Password</span></a>
+    </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
