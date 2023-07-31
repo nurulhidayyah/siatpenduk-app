@@ -18,7 +18,7 @@ class DashboardPengajuanController extends Controller
     {
 
         return view('dashboard.pengajuan.index', [
-            'pengajuans' => Pengajuan::where('user_id', auth()->user()->id)->get()
+            'pengajuans' => Pengajuan::where('user_id', auth()->user()->id)->get(),
         ]);
     }
 

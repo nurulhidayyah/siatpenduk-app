@@ -22,6 +22,13 @@ class CreateUsersTable extends Migration
             $table->string('image')->nullable();
             $table->foreignId('role_id')->default(3);
             $table->foreignId('is_active')->default(1);
+            $table->string('tempat_lahir')->nullable();
+            $table->string('tanggal_lahir')->nullable();
+            $table->string('jenis_kelamin')->nullable();
+            $table->string('agama')->nullable();
+            $table->string('pekerjaan')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('nik')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

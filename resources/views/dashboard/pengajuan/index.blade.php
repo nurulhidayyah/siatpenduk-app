@@ -50,10 +50,12 @@
                                 <td>
                                     <form action="/admin/tanggapan" class="d-inline">
                                         <input type="hidden" name="id" id="id" value="{{ $pengajuan->id }}">
-                                            <button type="submit" class="badge badge-success border-0"><i class="fas fa-eye"></i></button>
+                                        <button type="submit" class="badge badge-success border-0"><i
+                                                class="fas fa-eye"></i></button>
                                     </form>
                                     @if ($pengajuan->status == 'Diajukan')
-                                        <a href="/dashboard/pengajuan/{{ $pengajuan->id }}/edit" class="badge badge-warning">Edit</a>
+                                        <a href="/dashboard/pengajuan/{{ $pengajuan->id }}/edit"
+                                            class="badge badge-warning">Edit</a>
                                         <form action="/dashboard/pengajuan/{{ $pengajuan->id }}" method="post"
                                             class="d-inline">
                                             @method('delete')
@@ -62,7 +64,8 @@
                                                 onclick="return confirm('Apakah yakin ingin menghapus data ini?')">Hapus</button>
                                         </form>
                                     @elseif ($pengajuan->status == 'Selesai')
-                                    <a href="/exportpdf/{{ $pengajuan->id }}" class="badge badge-primary" target="blank">Cetak</a>
+                                        <a href="/exportpdf/{{ $pengajuan->id }}" class="badge badge-primary"
+                                            target="blank">Cetak</a>
                                     @else
                                         <small>Tidak ada aksi</small>
                                     @endif

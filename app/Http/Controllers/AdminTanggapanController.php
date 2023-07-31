@@ -36,7 +36,7 @@ class AdminTanggapanController extends Controller
     public function show(Request $request)
     {
         
-        $tanggapan = Tanggapan::where('id', $request->id)->first();
+        $tanggapan = Tanggapan::where('pengajuan_id', $request->id)->first();
 
         if ($tanggapan !== NULL) {
             return view('dashboard.pengajuan.show', [

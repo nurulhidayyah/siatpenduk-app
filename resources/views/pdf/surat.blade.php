@@ -1,54 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CETAK SURAT</title>
-    <link rel="stylesheet" href="assets/css/formsurat.css">
-    <style type="text/css" media="print">
+    <title>Surat Pengantar SKCK</title>
+    <style>
         @page {
-            margin: 0;
+            size: 8.3in 11.7in
         }
 
-        body {
-            margin: 1cm;
-            margin-left: 6cm;
-            margin-right: 6cm;
-            font-family: "Times New Roman", Times, serif;
+        #judul {
+            text-align: center;
         }
 
+        #halaman {
+            width: 630px;
+            height: auto;
+            position: absolute;
+            margin-left: 40px
+        }
+
+        .isi {
+            padding-left: 30px;
+            padding-right: 30px;
+            text-align: justify;
+        }
+
+        hr {
+            display: block;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            margin-left: auto;
+            margin-right: auto;
+            border-style: inset;
+            border-width: 1px;
+        }
     </style>
-
 </head>
 
 <body>
-    <div>
-        <table width="100%">
-            <tr><img src="assets/img/logoDesaDukuh.jpeg" alt="" class="logo"></tr>
-            <div class="header">
-                <h4 class="kop" style="text-transform: uppercase">PEMERINTAH KABUPATEN SERANG</h4>
-                <h4 class="kop" style="text-transform: uppercase">KECAMATAN KRAGILAN</h4>
-                <h4 class="kop" style="text-transform: uppercase">DESA DUKUH</h4>
-                <h5 class="kop2" style="text-transform: capitalize;">Alamat : Kp.Dukuh Rt.014/05 Ds.Dukuh Kec.Kragilan Kode Pos 42184</h5>
-                <div style="text-align: center;">
-                    <hr>
-                </div>
-            </div>
-            <br>
+    <div id="halaman">
+        <table style="line-height: 24px">
+            <tr>
+                <td colspan="2">
+                    <center><img src="assets/img/logoDesaDukuh.jpeg" width="80" alt=""></center>
+                </td>
+                <!-- <td></td> -->
+                <td colspan="10" width="700">
+                    <center>
+                        <font style="line-height: 30px; font-size: 24px;">PEMERINTAH KABUPATEN SERANG</font><br>
+                        <font style="line-height: 30px; font-size: 24px">KECAMATAN KRAGILAN</font><br>
+                        <font style="line-height: 30px; font-size: 24px">DESA DUKUH</font> <br>
+                        <font style="line-height: 30px; font-size: 15px;">Alamat : Kp.Dukuh Rt.014/05 Ds.Dukuh Kec.Kragilan
+                            Kode Pos 42184</font>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    <hr><br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                    <center>
+                        <p style="line-height: 0; font-size: 24px; font-style: bold"><u>{{ $data->jenis_surat }}</u></p>
+                        <p style="line-height: 0; font-size: 15px" size="2">Nomor : {{ $data->id }} / Pem /
+                            {{ $bulan }}/ 2023</p>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="12" style="text-align: justify;">
+                    <font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yang bertanda tangan dibawah ini
+                        Kepala Desa Dukuh Kecamatan Kragilan Kabupaten Serang, dengan ini menerangkan dengan
+                        sesungguhnya bahwa :</font><br><br>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">Nama</td>
+                <td colspan="9">: {{ $data->user->nama }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2" width="300">Tempat,Tgl Lahir/Umur</td>
+                <td colspan="9">: {{ $data->user->tempat_lahir }}, {{ date('d-m-Y', $data->user->tanggal_lahir) }}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">Jenis Kelamin</td>
+                <td colspan="9">: {{ $data->user->jenis_kelamin }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">Agama</td>
+                <td colspan="9">: {{ $data->user->agama }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">Pekerjaan</td>
+                <td colspan="9">: {{ $data->user->pekerjaan }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">Alamat</td>
+                <td colspan="9">: {{ $data->user->alamat }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">NIK</td>
+                <td colspan="9">: {{ $data->user->nik }}</td>
+            </tr><br><br>
+            <tr>
+                <td colspan="12" style="text-align: justify;">
+                    <font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Demikian surat keterangan ini
+                        dibuat agar pihak yang berkepentingan mengetahui dan untuk dipergunakan sebagaimana mestinya.
+                    </font><br><br><br>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="6" style="text-align: center">Dukuh, {{ $data->created_at->format('d F Y') }} <br>A/n
+                    Kepala Desa Dukuh <br>Kasi
+                    Pemerintahan
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <u>ANTON WIJAYA RISMAWAN</u>
+                    <br>
+                    NRPD.060421994031701
+                </td>
+            </tr>
         </table>
-        <br>
-        <div align="center"><u>
-            <h4 class="kop">SURAT PENGANTAR SKCK</h4>
-        </u>
-
-        <span class="kop3">
-            <b>Nomor :&nbsp;&nbsp;&nbsp;   </b>
-        </span>
-
-    </div>
     </div>
 </body>
-
-</html>

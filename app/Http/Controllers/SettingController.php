@@ -80,7 +80,16 @@ class SettingController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
             'image' => 'image|file|max:1024|mimes:png,jpg,jpeg',
+            'tempat_lahir' => 'max:255',
+            'tanggal_lahir' => 'max:255',
+            'jenis_kelamin' => 'max:255',
+            'agama' => 'max:255',
+            'pekerjaan' => 'max:255',
+            'alamat' => 'max:255',
+            'nik' => 'max:255'
         ]);
+
+        $validatedData['tanggal_lahir'] = strtotime($request->tanggal_lahir);
 
         if ($request->file('image')) {
             if ($request->oldImage) {

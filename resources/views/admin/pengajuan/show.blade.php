@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="col">
                     <div class="card-body">
-                        <h5 class="card-title">Tgl Pengaduan : {{ $pengajuan->created_at }}</h5>
+                        <h5 class="card-title">Tgl Pengajuan : {{ $pengajuan->created_at }}</h5>
                         <p class="card-text">Status : {{ $pengajuan->status }}</p>
                         <p class="card-text"><small class="text-muted">Jenis Surat : {{ $pengajuan->jenis_surat }}</small>
                         </p>

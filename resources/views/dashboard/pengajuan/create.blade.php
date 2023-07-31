@@ -16,11 +16,22 @@
                 @csrf
                 <div class="form-group">
                     <label for="jenis_surat">Jenis Surat</label>
-                    <input name="jenis_surat" id="jenis_surat"
-                        class="form-control @error('jenis_surat')
-                        is-invalid
-                    @enderror"
-                        autofocus value="{{ old('jenis_surat') }}" required>
+                    <select name="jenis_surat" id="jenis_surat" class="form-control @error('jenis_surat')
+                    is-invalid
+                @enderror">
+                        <option value="">-- Jenis Surat --</option>
+                        <option value="PENGANTAR KTP">PENGANTAR KTP</option>
+                        <option value="PENGANTAR KTP SEMENTARA">PENGANTAR KTP SEMENTARA</option>
+                        <option value="PENGANTAR KETERANGAN AKTE KELAHIRAN">PENGANTAR KETERANGAN AKTE KELAHIRAN</option>
+                        <option value="PENGANTAR KARTU KELUARGA">PENGANTAR KARTU KELUARGA</option>
+                        <option value="PENGANTAR SURAT KEMATIAN">PENGANTAR SURAT KEMATIAN</option>
+                        <option value="PENGANTAR IZIN MELAKSANAKAN KEGIATAN">PENGANTAR IZIN MELAKSANAKAN KEGIATAN</option>
+                        <option value="PENGANTAR KETERANGAN KEHILANGAN">PENGANTAR KETERANGAN KEHILANGAN</option>
+                        <option value="PENGANTAR KETERANGAN DOMISILI">PENGANTAR KETERANGAN DOMISILI</option>
+                        <option value="PENGANTAR KETERANGAN KURANG MAMPU">PENGANTAR KETERANGAN KURANG MAMPU</option>
+                        <option value="PENGANTAR KETERANGAN PINDAH">PENGANTAR KETERANGAN PINDAH</option>
+                        <option value="PENGANTAR KETERANGAN USAHA">PENGANTAR KETERANGAN USAHA</option>
+                    </select>
                     @error('jenis_surat')
                         <small class="text-danger pl-3">
                             {{ $message }}
