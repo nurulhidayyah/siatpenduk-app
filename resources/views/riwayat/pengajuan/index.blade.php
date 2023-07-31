@@ -49,8 +49,8 @@
                                 <td>{{ $tanggapan->pengajuan->user->phone }}</td>
                                 <td>{{ $tanggapan->pengajuan->jenis_surat }}</td>
                                 <td>{{ $tanggapan->pengajuan->kebutuhan }}</td>
-                                <td>{{ $tanggapan->pengajuan->created_at }}</td>
-                                <td>{{ $tanggapan->created_at }}</td>
+                                <td>{{ $tanggapan->pengajuan->created_at->format('d-m-Y') }}</td>
+                                <td>{{ $tanggapan->created_at->format('d-m-Y') }}</td>
                                 <td>{{ $tanggapan->pengajuan->status }}</td>
                                 {{-- <td>
                                     <form action="/admin/tanggapan" class="d-inline">

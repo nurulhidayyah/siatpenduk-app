@@ -47,7 +47,7 @@
                     <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
                     <div class="col-sm-9">
                         <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-                            value="{{ old('tanggal_lahir', auth()->user()->tanggal_lahir) }}">
+                            value="{{ date('Y-m-d', auth()->user()->tanggal_lahir) }}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -55,8 +55,8 @@
                     <div class="col-sm-9">
                         <select class="form-control" name="jenis_kelamin">
                             <option value="">-- Pilih Jenis Kelamin --</option>
-                            <option name="jenis_kelamin" value="Laki-Laki">Laki-Laki</option>
-                            <option name="jenis_kelamin" value="Perempuan">Perempuan</option>
+                            <option name="jenis_kelamin" value="Laki-laki" {{ auth()->user()->jenis_kelamin === 'Laki-laki' ? 'selected' : '' }}>Laki-Laki</option>
+                            <option name="jenis_kelamin" value="Perempuan" {{ auth()->user()->jenis_kelamin === 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                     </div>
                 </div>
@@ -65,11 +65,11 @@
                     <div class="col-sm-9">
                         <select class="form-control" name="agama">
                             <option value="">-- Pilih Agama --</option>
-                            <option name="agama" value="Islam">Islam</option>
-                            <option name="agama" value="Kristen">Kristen</option>
-                            <option name="agama" value="Katolik">Katolik</option>
-                            <option name="agama" value="Budha">Budha</option>
-                            <option name="agama" value="Hindu">Hindu</option>
+                            <option name="agama" value="Islam" {{ auth()->user()->agama === 'Islam' ? 'selected' : '' }}>Islam</option>
+                            <option name="agama" value="Kristen" {{ auth()->user()->agama === 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                            <option name="agama" value="Katolik" {{ auth()->user()->agama === 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                            <option name="agama" value="Budha" {{ auth()->user()->agama === 'Budha' ? 'selected' : '' }}>Budha</option>
+                            <option name="agama" value="Hindu" {{ auth()->user()->agama === 'Hindu' ? 'selected' : '' }}>Hindu</option>
                         </select>
                     </div>
                 </div>

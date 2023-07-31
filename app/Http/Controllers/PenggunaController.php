@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengajuan;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
@@ -96,11 +97,14 @@ class PenggunaController extends Controller
      */
     public function destroy(User $user, Request $request)
     {
+        $pengajuan = Pengajuan::where('user_id', $request->id)->get();
+        $gambar = Pengajuan::where('lampiran_1', $request->id)->get();
         if ($request->oldImage) {
             Storage::delete($request->oldImage);
         }
-        
+        Storage::destroy($pengajuan);
         User::destroy($request->id);
+        Pengajuan::destroy($pengajuan);
 
         return redirect('/admin/pengguna')->with('success', 'Pengguna berhasil dihapus!');
     }
