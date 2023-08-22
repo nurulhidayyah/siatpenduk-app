@@ -38,7 +38,9 @@
                             <th>Kebutuhan</th>
                             <th>Tanggal Pengajuan</th>
                             <th>Tanggal Tanggapan</th>
+                            <th>Periode</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,27 +53,11 @@
                                 <td>{{ $tanggapan->pengajuan->kebutuhan }}</td>
                                 <td>{{ $tanggapan->pengajuan->created_at->format('d-m-Y') }}</td>
                                 <td>{{ $tanggapan->created_at->format('d-m-Y') }}</td>
+                                <td>{{ $tanggapan->created_at->format('Y') }}</td>
                                 <td>{{ $tanggapan->pengajuan->status }}</td>
-                                {{-- <td>
-                                    <form action="/admin/tanggapan" class="d-inline">
-                                        <input type="hidden" name="id" id="id" value="{{ $pengajuan->id }}">
-                                            <button type="submit" class="badge badge-success border-0"><i class="fas fa-eye"></i></button>
-                                    </form>
-                                    @if ($pengajuan->status == 'Diajukan')
-                                        <a href="/dashboard/pengajuan/{{ $pengajuan->id }}/edit" class="badge badge-warning">Edit</a>
-                                        <form action="/dashboard/pengajuan/{{ $pengajuan->id }}" method="post"
-                                            class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="badge badge-danger border-0"
-                                                onclick="return confirm('Apakah yakin ingin menghapus data ini?')">Hapus</button>
-                                        </form>
-                                    @elseif ($pengajuan->status == 'Selesai')
-                                    <a href="/exportpdf/{{ $pengajuan->id }}" class="badge badge-primary" target="blank">Cetak</a>
-                                    @else
-                                        <small>Tidak ada aksi</small>
-                                    @endif
-                                </td> --}}
+                                <td>
+                                    <a href="/exportpdf/{{ $tanggapan->pengajuan->id }}" class="badge badge-primary" target="blank">Cetak</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

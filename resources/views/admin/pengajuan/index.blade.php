@@ -28,6 +28,10 @@
                         <h6 class="m-0 font-weight-bold text-primary">{{ $pengajuan->user->nama }}</h6>
                     </div>
                     <div class="card-body">
+                        <span class="text-dark">NIK :</span>
+                        <p>{{ $pengajuan->user->nik }}</p>
+                        <span class="text-dark">Jenis Surat :</span>
+                        <p>{{ $pengajuan->jenis_surat }}</p>
                         <span class="text-dark">Kebutuhan :</span>
                         <p>{{ $pengajuan->kebutuhan }}</p>
                         <span class="text-dark">No Telp :</span>

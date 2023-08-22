@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Surat Pengantar SKCK</title>
+    <title>{{ $data->jenis_surat }}</title>
     <style>
         @page {
             size: 8.3in 11.7in

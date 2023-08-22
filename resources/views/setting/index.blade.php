@@ -34,7 +34,9 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">{{ $user->nama }}</h5>
+                    <h5 class="card-title">{{ $user->nik }}</h5>
                     <p class="card-text">{{ $user->email }}</p>
+                    <p class="card-text">{{ $user->phone }}</p>
                     <p class="card-text"><small class="text-muted">Member since {{ $user->created_at }}</small></p>
                 </div>
             </div>
