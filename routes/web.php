@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 // ----------------------------Login dan Registarai--------------------------------
 
-Route::get('/', [LoginController::class, 'index'])->name('landing')->middleware('guest');
+Route::get('/', [LoginController::class, 'index'])->name('landing');
 
 Route::get('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');

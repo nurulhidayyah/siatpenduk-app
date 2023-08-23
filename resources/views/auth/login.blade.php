@@ -1,70 +1,64 @@
 @extends('layouts.auth')
-
 @section('title')
-    SIATPENDUK - LOGIN
+    <title>SIATPENDUK - LOGIN</title>
 @endsection
+@section('nav')
 
-@section('container')
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
-
-        <div class="col-lg-6">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <img src="/assets/img/logoDesaDukuh.jpeg" alt="Logo Desa Dukuh" class="img-fluid mb-3" width="50%">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light py-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/assets/img/logoDesaDukuh.png" width="30" height="30" class="d-inline-block align-top"
+                    alt="SIATPENDUK">
+                SIATPENDUK
+            </a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <span class="nav-link nav-link-login">
+                        <a href="/register"> Register</a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End of Navbar -->
+@endsection
+@section('content')
+    <section class="my-login">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card-wrapper">
+                    <div class="card fat">
+                        <div class="card-body">
+                            <h4 class="card-title">Login <span class="text-core">SIATPENDUK</span></h4>
+                            @if (session()->has('loginError'))
+                                <div class="alert alert-danger alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{ session('loginError') }}</strong>
                                 </div>
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">LOGIN</h1>
+                            @endif
+                            <form method="POST" action="/login">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" name="email" placeholder="Ketikkan Email" autofocus required value="{{ old('email') }}">
                                 </div>
-                                @if (session()->has('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        {{ session('success') }}
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                @endif
-
-                                @if (session()->has('loginError'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        {{ session('loginError') }}
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                @endif
-                                <form class="user" method="post" action="/login">
-                                    @csrf
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-user @error('email')
-                                            is-invalid
-                                        @enderror" id="email" name="email" placeholder="Email Address" autofocus required value="{{ old('email') }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password" required>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        Login
-                                    </button>
-
-                                </form>
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="/register">Create an Account!</a>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Ketikkan Password" required>
                                 </div>
-                            </div>
+                                <div class="form-group mt-4">
+                                    <button type="submit" class="btn btn-core btn-block">MASUK AKUN</button>
+                                </div>
+                            </form>
                         </div>
+                    </div>
+                    <div class="footer">
+                        Copyright &copy; 2023 &mdash; SIATPENDUK
                     </div>
                 </div>
             </div>
-
         </div>
+    </section>
 
-    </div>
 @endsection
