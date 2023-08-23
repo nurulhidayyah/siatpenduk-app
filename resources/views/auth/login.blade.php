@@ -31,12 +31,21 @@
                     <div class="card fat">
                         <div class="card-body">
                             <h4 class="card-title">Login <span class="text-core">SIATPENDUK</span></h4>
+
+                            @if (session()->has('success'))
+                                <div class="alert alert-success alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{ session('success') }}</strong>
+                                </div>
+                            @endif
+
                             @if (session()->has('loginError'))
                                 <div class="alert alert-danger alert-block">
                                     <button type="button" class="close" data-dismiss="alert">×</button>
                                     <strong>{{ session('loginError') }}</strong>
                                 </div>
                             @endif
+
                             <form method="POST" action="/login">
                                 @csrf
                                 <div class="form-group">
