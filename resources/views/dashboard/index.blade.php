@@ -5,7 +5,7 @@
 @endsection
 
 @section('container')
-        <h1>Nurul Hidayah</h1>
+        <h1>{{ auth()->user()->nama }}</h1>
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>

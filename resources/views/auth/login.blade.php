@@ -17,6 +17,9 @@
                         <div class="col-lg-12">
                             <div class="p-5">
                                 <div class="text-center">
+                                    <img src="/assets/img/logoDesaDukuh.jpeg" alt="Logo Desa Dukuh" class="img-fluid mb-3" width="50%">
+                                </div>
+                                <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">LOGIN</h1>
                                 </div>
                                 @if (session()->has('success'))
