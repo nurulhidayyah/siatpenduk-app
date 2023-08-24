@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -27,8 +28,15 @@ class LoginController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             if (auth()->user()->is_active == 2) {
-                $request->session()->regenerate();
-                return redirect()->intended('/setting/profile');
+                if (auth()->user()->role_id == 3) {
+                    Session::put('user', TRUE);
+                    Session::put('id', auth()->user()->id);
+                    return redirect()->intended('/user');
+                    $request->session()->regenerate();
+                } else {
+                    return redirect()->intended('/setting/profile');
+                    $request->session()->regenerate();
+                }
             } else {
                 request()->session()->invalidate();
                 request()->session()->regenerateToken();

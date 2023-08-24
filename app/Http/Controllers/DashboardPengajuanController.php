@@ -17,7 +17,7 @@ class DashboardPengajuanController extends Controller
     public function index()
     {
 
-        return view('dashboard.pengajuan.index', [
+        return view('user.pengajuan.index', [
             'pengajuans' => Pengajuan::where('user_id', auth()->user()->id)->get(),
         ]);
     }
@@ -29,7 +29,7 @@ class DashboardPengajuanController extends Controller
      */
     public function create()
     {
-        return view('dashboard.pengajuan.create');
+        return view('user.pengajuan.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class DashboardPengajuanController extends Controller
 
         Pengajuan::create($validatedData);
 
-        return redirect('/dashboard/pengajuan')->with('success', 'Pengajuan berhasil dikirm! Silahkan menunggu!');
+        return redirect('/user/pengajuan')->with('success', 'Pengajuan berhasil dikirm! Silahkan menunggu!');
     }
 
     /**
@@ -64,7 +64,7 @@ class DashboardPengajuanController extends Controller
      */
     public function show(Pengajuan $pengajuan)
     {
-        return view('dashboard.pengajuan.show', [
+        return view('user.pengajuan.show', [
             'title' => 'Detail Pengajuan',
             'pengajuan' => $pengajuan
         ]);
@@ -78,7 +78,7 @@ class DashboardPengajuanController extends Controller
      */
     public function edit(Pengajuan $pengajuan)
     {
-        return view('dashboard.pengajuan.edit', [
+        return view('user.pengajuan.edit', [
             'title' => 'Edit Pengajuan',
             'pengajuan' => $pengajuan
         ]);
@@ -117,7 +117,7 @@ class DashboardPengajuanController extends Controller
 
         Pengajuan::where('id', $pengajuan->id)->update($validatedData);
 
-        return redirect('/dashboard/pengajuan')->with('success', 'Pengajuan berhasil diedit!');
+        return redirect('/user/pengajuan')->with('success', 'Pengajuan berhasil diedit!');
     }
 
     /**
@@ -132,6 +132,6 @@ class DashboardPengajuanController extends Controller
         Storage::delete($pengajuan->lampiran_2);
         Pengajuan::destroy($pengajuan->id);
 
-        return redirect('/dashboard/pengajuan')->with('success', 'Pengajuan berhasil dihapus!');
+        return redirect('/user/pengajuan')->with('success', 'Pengajuan berhasil dihapus!');
     }
 }

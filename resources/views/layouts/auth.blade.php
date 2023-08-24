@@ -45,6 +45,20 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
     <script src="/assets/js/script.js"></script>
+    @yield('script')
+    @if (Session::get('kades') == true)
+        <script>
+            window.location.href = "/kepaladesa/beranda";
+        </script>
+    @elseif (Session::get('user') == true)
+        <script>
+            window.location.href = "/user";
+        </script>
+    @elseif (Session::get('admin') == true)
+        <script>
+            window.location.href = "/admin/beranda";
+        </script>
+    @endif
 
 </body>
 

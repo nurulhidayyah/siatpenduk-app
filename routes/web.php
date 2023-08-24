@@ -28,8 +28,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->name('landing');
 
-Route::get('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -52,15 +52,15 @@ Route::resource('/kades/validasi', KadesValidasiController::class)->except('crea
 
 // --------------------------------------User--------------------------------------
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
+Route::get('/user', function () {
+    return view('user.index');
 })->middleware('masyarakat');
 
-Route::resource('/dashboard/pengajuan', DashboardPengajuanController::class)->except('show')->middleware('masyarakat');
+Route::resource('/user/pengajuan', DashboardPengajuanController::class)->except('show')->middleware('masyarakat');
 
 // ------------------------------------Setting-------------------------------------
 
-Route::resource('/setting/profile', SettingController::class)->only('index', 'edit', 'update')->middleware('auth');
-Route::resource('/setting/ubah_password', SettingPasswordController::class)->only('index', 'update')->middleware('auth');
+Route::resource('/setting/profile', SettingController::class)->only('index', 'edit', 'update')->middleware('else');
+Route::resource('/setting/ubah_password', SettingPasswordController::class)->only('index', 'update')->middleware('else');
 
 Route::get('/exportpdf/{pengajuan}', [Exportpdf::class, 'index'])->middleware('auth');
