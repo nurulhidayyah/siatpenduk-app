@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengajuan;
 use App\Models\Tanggapan;
+use App\Models\Transworkflow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,6 +21,13 @@ class DashboardPengajuanController extends Controller
         return view('user.pengajuan.index', [
             'pengajuans' => Pengajuan::where('user_id', auth()->user()->id)->get(),
         ]);
+    }
+
+    public function pengajuanSurattracing($id)
+    {
+
+        $data = Transworkflow::where('pengajuan_id', $id)->get();
+        return response()->json(array('data' => $data), 200);
     }
 
     /**
@@ -51,7 +59,28 @@ class DashboardPengajuanController extends Controller
         $validatedData['lampiran_1'] = $request->file('lampiran_1')->store('pengajuan-lampiran');
         $validatedData['lampiran_2'] = $request->file('lampiran_2')->store('pengajuan-lampiran');
 
-        Pengajuan::create($validatedData);
+        // $pengajuan = Pengajuan::create($validatedData);
+
+        $date = date('d/m/Y  G:i:s');
+        $array = [
+            "Surat Diajukan",
+            $date
+        ];
+        $history = json_encode($array);
+
+        $transworkflow = new TransWorkflow();
+        $transworkflow->history = $history;
+        $pengajuan = new Pengajuan();
+        $pengajuan->jenis_surat = $request->jenis_surat;
+        $pengajuan->lampiran_1 = $request->file('lampiran_1')->store('pengajuan-lampiran');
+        $pengajuan->lampiran_2 = $request->file('lampiran_2')->store('pengajuan-lampiran');
+
+        $pengajuan->user_id = auth()->user()->id;
+        $pengajuan->kebutuhan = $request->kebutuhan;
+
+        $pengajuan->save();
+        $pengajuan->transworkflow()->save($transworkflow);
+        
 
         return redirect('/user/pengajuan')->with('success', 'Pengajuan berhasil dikirm! Silahkan menunggu!');
     }

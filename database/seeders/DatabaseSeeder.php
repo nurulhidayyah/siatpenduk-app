@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Active;
 use App\Models\User;
 use App\Models\UserRole;
+use App\Models\WfReference;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -51,6 +52,18 @@ class DatabaseSeeder extends Seeder
         ]);
         Active::create([
             'active' => 'Aktif'
+        ]);
+
+        WfReference::create([
+            'wp_name' => 'Surat Diajukan'
+        ]);
+
+        WfReference::create([
+            'wp_name' => 'Surat Telah diteruskan Admin'
+        ]);
+
+        WfReference::create([
+            'wp_name' => 'Surat Telah Selesai diproses'
         ]);
     }
 }

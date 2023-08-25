@@ -38,6 +38,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 // -------------------------------------Admin--------------------------------------
 
 Route::resource('/admin/pengajuan', AdminPengajuanController::class)->except('create', 'edit')->middleware('admin');
+
 Route::post('/admin/tanggapan', [AdminTanggapanController::class, 'store']);
 Route::get('/admin/tanggapan', [AdminTanggapanController::class, 'show'])->middleware('auth');
 
@@ -47,7 +48,7 @@ Route::resource('/admin/riwayat', RiwayatController::class)->middleware('admin')
 
 // -------------------------------------Kades--------------------------------------
 
-Route::resource('/kades/validasi', KadesValidasiController::class)->except('create', 'edit')->middleware('kades');
+Route::resource('/kades/validasi', KadesValidasiController::class)->only('index', 'update')->middleware('kades');
 // Route::post('/admin/tanggapan', [AdminTanggapanController::class, 'store']);
 
 // --------------------------------------User--------------------------------------
@@ -57,6 +58,7 @@ Route::get('/user', function () {
 })->middleware('masyarakat');
 
 Route::resource('/user/pengajuan', DashboardPengajuanController::class)->except('show')->middleware('masyarakat');
+Route::get('user/tracing/{id}/pengajuan-surat', [DashboardPengajuanController::class, 'pengajuanSurattracing'])->name('pengajuan_surat_tracing');
 
 // ------------------------------------Setting-------------------------------------
 

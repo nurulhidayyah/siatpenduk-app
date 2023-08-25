@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengajuan;
 use App\Models\Tanggapan;
+use App\Models\Transworkflow;
 use Illuminate\Http\Request;
 
 class AdminTanggapanController extends Controller
@@ -25,9 +26,25 @@ class AdminTanggapanController extends Controller
                 'status' => 'required'
             ]);
 
-            $validatedData['status'] = $request->status;
+            // $validatedData['status'] = $request->status;
 
-            Pengajuan::where('id', $request->pengajuan_id)->update($validatedData);
+            // Pengajuan::where('id', $request->pengajuan_id)->update($validatedData);
+
+            $data = Transworkflow::where('id', $request->pengajuan_id)->get();
+            foreach ($data as $item)
+                $array = json_decode($item->history);
+
+            $date = date('d/m/Y  G:i:s');
+            $array[] =  "Surat Telah diteruskan Admin";
+            $array[] =  $date;
+            $history = json_encode($array);
+            TransWorkflow::where('id', $request->pengajuan_id)->update([
+                'wf_reference_id' => "2",
+                "history" => $history,
+            ]);
+            Pengajuan::where('id', $request->pengajuan_id)->update([
+                'status' => $request->status,
+            ]);
         }
 
         return redirect('/admin/pengajuan')->with('success', 'Pengajuan berhasil diproses');
@@ -35,7 +52,7 @@ class AdminTanggapanController extends Controller
 
     public function show(Request $request)
     {
-        
+
         $tanggapan = Tanggapan::where('pengajuan_id', $request->id)->first();
 
         if ($tanggapan !== NULL) {
