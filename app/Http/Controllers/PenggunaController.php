@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Pengajuan;
 use App\Models\User;
 use App\Models\UserRole;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PenggunaController extends Controller
@@ -98,17 +101,22 @@ class PenggunaController extends Controller
     public function destroy(User $user, Request $request)
     {
         $pengajuan = Pengajuan::where('user_id', $request->id)->get();
+        $user = User::where('id', $request->id)->first();
 
         foreach ($pengajuan as $item) {
             // Menghapus file terkait dari penyimpanan
-            if ($item->lampiran_1) {
+            if ($item->lampiran_1 && $item->lampiran_2) {
                 Storage::delete($item->lampiran_1);
+                Storage::delete($item->lampiran_2);
             }
 
             // Menghapus data pengajuan
             $item->delete();
+            DB::table('tanggapans')->where('pengajuan_id', $item->id)->delete();
+            DB::table('transworkflows')->where('pengajuan_id', $item->id)->delete();
         }
 
+        Storage::delete($user->image);
         // Menghapus data pengguna
         User::destroy($request->id);
 
