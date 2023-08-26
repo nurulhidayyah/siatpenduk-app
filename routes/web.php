@@ -60,7 +60,7 @@ Route::get('/user', function () {
     return view('user.index');
 })->middleware('masyarakat');
 
-Route::resource('/user/pengajuan', DashboardPengajuanController::class)->except('show')->middleware('masyarakat');
+Route::resource('/user/pengajuan', DashboardPengajuanController::class)->except('create')->middleware('masyarakat');
 Route::get('user/tracing/{id}/pengajuan-surat', [DashboardPengajuanController::class, 'pengajuanSurattracing'])->name('pengajuan_surat_tracing');
 
 // ------------------------------------Setting-------------------------------------

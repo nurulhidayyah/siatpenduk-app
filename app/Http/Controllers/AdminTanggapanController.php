@@ -26,25 +26,42 @@ class AdminTanggapanController extends Controller
                 'status' => 'required'
             ]);
 
-            // $validatedData['status'] = $request->status;
+            $validatedData['status'] = $request->status;
 
             // Pengajuan::where('id', $request->pengajuan_id)->update($validatedData);
+            if ($validatedData['status'] == 'Ditolak') {
+                $data = Transworkflow::where('id', $request->pengajuan_id)->get();
+                foreach ($data as $item)
+                    $array = json_decode($item->history);
 
-            $data = Transworkflow::where('id', $request->pengajuan_id)->get();
-            foreach ($data as $item)
-                $array = json_decode($item->history);
+                $date = date('d/m/Y  G:i:s');
+                $array[] =  "Surat di Tolak Admin";
+                $array[] =  $date;
+                $history = json_encode($array);
+                TransWorkflow::where('id', $request->pengajuan_id)->update([
+                    'wf_reference_id' => "4",
+                    "history" => $history,
+                ]);
+                Pengajuan::where('id', $request->pengajuan_id)->update([
+                    'status' => $request->status,
+                ]);
+            } else {
+                $data = Transworkflow::where('id', $request->pengajuan_id)->get();
+                foreach ($data as $item)
+                    $array = json_decode($item->history);
 
-            $date = date('d/m/Y  G:i:s');
-            $array[] =  "Surat Telah diteruskan Admin";
-            $array[] =  $date;
-            $history = json_encode($array);
-            TransWorkflow::where('id', $request->pengajuan_id)->update([
-                'wf_reference_id' => "2",
-                "history" => $history,
-            ]);
-            Pengajuan::where('id', $request->pengajuan_id)->update([
-                'status' => $request->status,
-            ]);
+                $date = date('d/m/Y  G:i:s');
+                $array[] =  "Surat Telah diteruskan Admin";
+                $array[] =  $date;
+                $history = json_encode($array);
+                TransWorkflow::where('id', $request->pengajuan_id)->update([
+                    'wf_reference_id' => "2",
+                    "history" => $history,
+                ]);
+                Pengajuan::where('id', $request->pengajuan_id)->update([
+                    'status' => $request->status,
+                ]);
+            }
         }
 
         return redirect('/admin/pengajuan')->with('success', 'Pengajuan berhasil diproses');
@@ -56,12 +73,12 @@ class AdminTanggapanController extends Controller
         $tanggapan = Tanggapan::where('pengajuan_id', $request->id)->first();
 
         if ($tanggapan !== NULL) {
-            return view('dashboard.pengajuan.show', [
+            return view('user.pengajuan.show', [
                 'title' => 'Detail Pengajuan',
                 'tanggapan' => $tanggapan
             ]);
         } else {
-            return redirect('/dashboard/pengajuan')->with('error', 'Pengajuan sedang diproses');
+            return redirect('/user/pengajuan')->with('error', 'Pengajuan sedang diproses');
         }
     }
 }

@@ -37,7 +37,7 @@ class DashboardPengajuanController extends Controller
      */
     public function create()
     {
-        return view('user.pengajuan.create');
+        
     }
 
     /**

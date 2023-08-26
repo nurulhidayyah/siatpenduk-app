@@ -24,62 +24,67 @@
         @enderror
     </div>
 
-    <div class="row">
-        <div class="card no-border mb-3 col-lg-8">
-            <div class="justify-content-center">
-                <div class="">
-                    <h3 class="mt-2 mb-2"></h3>
+    @if ($pengajuan->status == 'Diajukan')
+        <div class="row">
+            <div class="card no-border mb-3 col-lg-8">
+                <div class="justify-content-center">
+                    <div class="">
+                        <h3 class="mt-2 mb-2"></h3>
+                    </div>
                 </div>
-            </div>
-            <div class="row no-gutters">
-                <div class="col-md-6">
-                    <label for="lampiran_1">Foto KTP</label>
-                    <img src="{{ asset('storage/' . $pengajuan->lampiran_1) }}" alt="" class="img-thumbnail">
-                </div>
-                <div class="col-md-6">
-                    <label for="lampiran_2">Foto Kartu Keluarga</label>
-                    <img src="{{ asset('storage/' . $pengajuan->lampiran_2) }}" alt="" class="img-thumbnail">
-                </div>
+                <div class="row no-gutters">
+                    <div class="col-md-6">
+                        <label for="lampiran_1">Foto KTP</label>
+                        <img src="{{ asset('storage/' . $pengajuan->lampiran_1) }}" alt="" class="img-thumbnail">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lampiran_2">Foto Kartu Keluarga</label>
+                        <img src="{{ asset('storage/' . $pengajuan->lampiran_2) }}" alt="" class="img-thumbnail">
+                    </div>
 
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card-body">
-                        <h5 class="card-title">Tgl Pengajuan : {{ $pengajuan->created_at }}</h5>
-                        <p class="card-text">Status : {{ $pengajuan->status }}</p>
-                        <p class="card-text"><small class="text-muted">Jenis Surat : {{ $pengajuan->jenis_surat }}</small>
-                        </p>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card-body">
+                            <h5 class="card-title">Tgl Pengajuan : {{ $pengajuan->created_at }}</h5>
+                            <p class="card-text">Status : {{ $pengajuan->status }}</p>
+                            <p class="card-text"><small class="text-muted">Jenis Surat :
+                                    {{ $pengajuan->jenis_surat }}</small>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <h1 class="h3 mb-4 text-gray-800">Masukan Tanggapan Anda</h1>
 
-    <h1 class="h3 mb-4 text-gray-800">Masukan Tanggapan Anda</h1>
+        <div class="row" style="margin-bottom: 200px;">
+            <div class="col-lg-6">
 
-    <div class="row" style="margin-bottom: 200px;">
-        <div class="col-lg-6">
+                <form action="/admin/tanggapan" method="post">
+                    @csrf
+                    <input type="hidden" name="pengajuan_id" value="{{ $pengajuan->id }}">
 
-            <form action="/admin/tanggapan" method="post">
-                @csrf
-                <input type="hidden" name="pengajuan_id" value="{{ $pengajuan->id }}">
+                    <label for="">Status Tanggapan</label>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" id="status-setuju"
+                                value="Diproses">
+                            <label class="form-check-label" for="status-setuju">Setuju</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" id="status-tolak" value="Ditolak">
+                            <label class="form-check-label" for="status-tolak">Tolak</label>
+                        </div>
 
-                <label for="">Status Tanggapan</label>
-                <div class="form-group">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="status" id="status-setuju" value="Diproses">
-                        <label class="form-check-label" for="status-setuju">Setuju</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="status" id="status-tolak" value="Ditolak">
-                        <label class="form-check-label" for="status-tolak">Tolak</label>
-                    </div>
 
-                </div>
+                    <button type="submit" class="btn btn-primary">Diproses</button>
+                </form>
+            </div>
 
-                <button type="submit" class="btn btn-primary">Diproses</button>
-            </form>
         </div>
-
-    </div>
+    @else
+        <div class="text-center">Sudah diverifikasi</div>
+    @endif
 @endsection

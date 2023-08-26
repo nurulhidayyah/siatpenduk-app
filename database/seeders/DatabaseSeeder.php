@@ -65,5 +65,9 @@ class DatabaseSeeder extends Seeder
         WfReference::create([
             'wp_name' => 'Surat Telah Selesai diproses'
         ]);
+
+        WfReference::create([
+            'wp_name' => 'Surat di Tolak Admin'
+        ]);
     }
 }
