@@ -27,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 // ----------------------------Login dan Registarai--------------------------------
 
 Route::get('/', [LoginController::class, 'index'])->name('landing');
+Route::get('/profile', function () {
+    return view('profile');
+});
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');

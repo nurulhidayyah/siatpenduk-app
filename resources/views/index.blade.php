@@ -9,9 +9,6 @@
         <a class="nav-link" href="/profile">Profil</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/informasi">Informasi</a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link btn btn-core" href="/login">masuk</a>
     </li>
 
