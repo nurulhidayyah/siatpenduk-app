@@ -23,7 +23,7 @@
     <!-- Sweetalert -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 
-    <title>SISPENDUK - Masyarakat</title>
+    <title>SIATPENDUK - Masyarakat</title>
 </head>
 
 <body>
@@ -33,8 +33,8 @@
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="/assets/img/logoDesaDukuh.png" width="30" height="30" class="d-inline-block align-top"
-                    alt="SISPENDUK">
-                SISPENDUK
+                    alt="SIATPENDUK">
+                SIATPENDUK
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
