@@ -98,13 +98,19 @@ class PenggunaController extends Controller
     public function destroy(User $user, Request $request)
     {
         $pengajuan = Pengajuan::where('user_id', $request->id)->get();
-        $gambar = Pengajuan::where('lampiran_1', $request->id)->get();
-        if ($request->oldImage) {
-            Storage::delete($request->oldImage);
+
+        foreach ($pengajuan as $item) {
+            // Menghapus file terkait dari penyimpanan
+            if ($item->lampiran_1) {
+                Storage::delete($item->lampiran_1);
+            }
+
+            // Menghapus data pengajuan
+            $item->delete();
         }
-        Storage::destroy($pengajuan);
+
+        // Menghapus data pengguna
         User::destroy($request->id);
-        Pengajuan::destroy($pengajuan);
 
         return redirect('/admin/pengguna')->with('success', 'Pengguna berhasil dihapus!');
     }
