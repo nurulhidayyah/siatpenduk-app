@@ -54,7 +54,7 @@
                                             <textarea class="form-control" id="kebutuhan" name="kebutuhan" rows="3" value="{{ old('kebutuhan') }}" required></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="lampiran_1">File 1 (format jpg/png) - ukuran maks. 2
+                                            <label for="lampiran_1">KTP (format jpg/png) - ukuran maks. 2
                                                 MB</label>
                                             <div class="custom-file">
                                                 <input type="file"
@@ -64,7 +64,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="lampiran_2">File 2 (format jpg/png) - ukuran maks. 2
+                                            <label for="lampiran_2">Kartu Keluarga (format jpg/png) - ukuran maks. 2
                                                 MB</label>
                                             <div class="custom-file">
                                                 <input type="file"
