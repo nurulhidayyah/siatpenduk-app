@@ -55,8 +55,12 @@
                                 <td>{{ $tanggapan->created_at->format('d-m-Y') }}</td>
                                 <td>{{ $tanggapan->created_at->format('Y') }}</td>
                                 <td>{{ $tanggapan->pengajuan->status }}</td>
-                                <td>
-                                    <a href="/exportpdf/{{ $tanggapan->pengajuan->id }}" class="badge badge-primary" target="blank">Cetak</a>
+                                <td align="center">
+                                    @if ($tanggapan->pengajuan->status == 'Selesai')
+                                        <a href="/exportpdf/{{ $tanggapan->pengajuan->id }}" class="badge badge-primary" target="blank">Cetak</a>
+                                    @else
+                                        <p>Tidak ada aksi</p>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
