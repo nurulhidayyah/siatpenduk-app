@@ -7,6 +7,7 @@ use App\Http\Controllers\Exportpdf;
 use App\Http\Controllers\KadesValidasiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\SettingController;
@@ -59,6 +60,8 @@ Route::resource('/kades/validasi', KadesValidasiController::class)->only('index'
 Route::get('/user', function () {
     return view('user.index');
 })->middleware('masyarakat');
+
+Route::resource('/user/profile', ProfileController::class)->only('index', 'edit', 'update')->middleware('masyarakat');
 
 Route::resource('/user/pengajuan', DashboardPengajuanController::class)->except('create')->middleware('masyarakat');
 Route::get('user/tracing/{id}/pengajuan-surat', [DashboardPengajuanController::class, 'pengajuanSurattracing'])->name('pengajuan_surat_tracing');

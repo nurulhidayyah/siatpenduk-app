@@ -1,12 +1,7 @@
 @extends('layouts.home')
 
-@section('nav')
-    <li class="nav-item active">
-        <a class="nav-link" href="/user">Beranda</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/user/pengajuan">Pengajuan</a>
-    </li>
+@section('title')
+    SIATPENDUK - Beranda
 @endsection
 
 @section('content')

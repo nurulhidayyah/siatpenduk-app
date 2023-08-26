@@ -1,12 +1,7 @@
 @extends('layouts.home')
 
-@section('nav')
-    <li class="nav-item">
-        <a class="nav-link" href="/user">Beranda</a>
-    </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="/user/pengajuan">Pengajuan</a>
-    </li>
+@section('title')
+    SIATPENDUK - Pengajuan
 @endsection
 
 @section('content')
@@ -54,22 +49,18 @@
                                             <textarea class="form-control" id="kebutuhan" name="kebutuhan" rows="3" value="{{ old('kebutuhan') }}" required></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="lampiran_1">KTP (format jpg/png) - ukuran maks. 2
-                                                MB</label>
+                                            <label for="lampiran_1">KTP (format jpg/png) - ukuran maks. 2 MB</label>
+                                            <img class="img-fluid img-preview1 mb-3 col-sm-5">
                                             <div class="custom-file">
-                                                <input type="file"
-                                                    class="custom-file-input @error('lampiran_1') is-invalid @enderror"
-                                                    id="lampiran_1" name="lampiran_1">
+                                                <input type="file" class="custom-file-input @error('lampiran_1') is-invalid @enderror" id="lampiran_1" name="lampiran_1" onchange="previewImage1()">
                                                 <label class="custom-file-label" for="customFile">Pilih File</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="lampiran_2">Kartu Keluarga (format jpg/png) - ukuran maks. 2
-                                                MB</label>
+                                            <label for="lampiran_2">Kartu Keluarga (format jpg/png) - ukuran maks. 2 MB</label>
+                                            <img class="img-fluid img-preview2 mb-3 col-sm-5">
                                             <div class="custom-file">
-                                                <input type="file"
-                                                    class="custom-file-input  @error('lampiran_2') is-invalid @enderror"
-                                                    id="lampiran_2" name="lampiran_2">
+                                                <input type="file" class="custom-file-input  @error('lampiran_2') is-invalid @enderror" id="lampiran_2" name="lampiran_2" onchange="previewImage2()">
                                                 <label class="custom-file-label" for="customFile">Pilih File</label>
                                             </div>
                                         </div>

@@ -1,5 +1,9 @@
 @extends('layouts.landing')
 
+@section('title')
+    SIATPENDUK - Beranda
+@endsection
+
 @section('content')
     <!-- Header -->
     <section class="header">

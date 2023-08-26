@@ -1,5 +1,9 @@
 @extends('layouts.landing')
 
+@section('title')
+    SIATPENDUK - Profile
+@endsection
+
 @section('content')
     <!-- Header -->
     <section class="header">
@@ -20,9 +24,6 @@
                 <div class="col-md-12">
                     <div class="card shadow-sm">
                         <div class="card-body">
-
-                            <!-- <img src="../assets/img/daerah.png" alt="" class="img-fluid mb-4" width="100%"> -->
-
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
                                     <div class="card-header" id="headingOne">

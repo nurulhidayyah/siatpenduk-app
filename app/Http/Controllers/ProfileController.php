@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class SettingController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('setting.index', [
+        return view('user.profile.index', [
             'title' => 'Profile saya',
             'user' => User::where('id', auth()->user()->id)->first()
         ]);
@@ -61,7 +61,7 @@ class SettingController extends Controller
      */
     public function edit(User $user)
     {
-        return view('setting.edit', [
+        return view('user.profile.edit', [
             'title' => 'Edit Profile',
             'user' => $user->first()
         ]);
@@ -76,10 +76,9 @@ class SettingController extends Controller
      */
     public function update(Request $request, User $user)
     {
-
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
-            'image' => 'image|file|max:1024|mimes:png,jpg,jpeg',
+            'image' => 'image|file|max:2048|mimes:png,jpg,jpeg',
             'tempat_lahir' => 'max:255',
             'tanggal_lahir' => 'max:255',
             'jenis_kelamin' => 'max:255',
@@ -100,7 +99,7 @@ class SettingController extends Controller
 
         User::where('id', auth()->user()->id)->update($validatedData);
 
-        return redirect('/setting/profile')->with('success', 'Ubah Profile Berhasil!');
+        return redirect('/user/profile')->with('success', 'Ubah Profile Berhasil!');
     }
 
     /**
