@@ -1,7 +1,7 @@
 <div style="margin-bottom: 100px">
     <nav class="navbar navbar-expand-lg fixed-top navbar-light py-4 shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/user">
                 <img src="/assets/img/logoDesaDukuh.png" width="30" height="30" class="d-inline-block align-top"
                     alt="SIATPENDUK">
                 SIATPENDUK

@@ -110,8 +110,8 @@
                                                         {{ $item->status }}
                                                         <br>
                                                         @if ($item->status == 'Selesai')
-                                                            <a href="/exportpdf/{{ $item->id }}" target="blank"><span
-                                                                    class="badge badge-info">Download Surat</span></a>
+                                                            <a href="/exportpdf/{{ $item->id }}" target="blank"><span 
+                                                                class="badge badge-info">Download Surat</span></a>
                                                         @endif
                                                     </a>
                                                 </div>
