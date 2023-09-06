@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone');
             $table->string('image')->nullable();
+            $table->string('ktp')->nullable();
             $table->foreignId('role_id')->default(3);
             $table->foreignId('is_active')->default(1);
             $table->string('tempat_lahir')->nullable();

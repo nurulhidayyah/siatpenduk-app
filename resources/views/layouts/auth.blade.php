@@ -15,9 +15,7 @@
     <link rel="stylesheet" href="/assets/css/all.css">
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Datatable -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
@@ -47,18 +45,34 @@
     <script src="/assets/js/script.js"></script>
     @yield('script')
     @if (Session::get('kades') == true)
-        <script>
-            window.location.href = "/kepaladesa/beranda";
-        </script>
+    <script>
+        window.location.href = "/kepaladesa/beranda";
+    </script>
     @elseif (Session::get('user') == true)
-        <script>
-            window.location.href = "/user";
-        </script>
+    <script>
+        window.location.href = "/user";
+    </script>
     @elseif (Session::get('admin') == true)
-        <script>
-            window.location.href = "/admin/beranda";
-        </script>
+    <script>
+        window.location.href = "/admin/beranda";
+    </script>
     @endif
+
+    <script>
+        function previewImage3() {
+            const ktp = document.querySelector('#ktp');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(ktp.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result
+            }
+        }
+    </script>
 
 </body>
 
