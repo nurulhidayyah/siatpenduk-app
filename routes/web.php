@@ -44,6 +44,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::resource('/admin/pengajuan', AdminPengajuanController::class)->except('create', 'edit')->middleware('admin');
 
 Route::post('/admin/tanggapan', [AdminTanggapanController::class, 'store']);
+Route::post('/admin/upload/{pengajuan}', [AdminTanggapanController::class, 'upload']);
 Route::get('/admin/tanggapan', [AdminTanggapanController::class, 'show'])->middleware('auth');
 
 Route::resource('/admin/pengguna', PenggunaController::class)->except('create', 'show', 'edit')->middleware('admin');

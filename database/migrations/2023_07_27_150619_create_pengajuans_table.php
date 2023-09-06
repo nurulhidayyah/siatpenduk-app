@@ -19,6 +19,7 @@ class CreatePengajuansTable extends Migration
             $table->string('kebutuhan');
             $table->string('lampiran_1');
             $table->string('lampiran_2');
+            $table->string('surat')->nullable();
             $table->string('status')->default('Diajukan');
             $table->foreignId('user_id');
             $table->timestamps();

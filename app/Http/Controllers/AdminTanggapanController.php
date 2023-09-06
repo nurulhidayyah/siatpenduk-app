@@ -81,4 +81,22 @@ class AdminTanggapanController extends Controller
             return redirect('/user/pengajuan')->with('error', 'Pengajuan sedang diproses');
         }
     }
+
+    public function upload(Request $request)
+    {
+        // Pastikan bahwa ada file yang diunggah dengan nama 'surat'
+        if ($request->hasFile('surat')) {
+            // Ambil file yang diunggah
+            $fileName = $request->file('surat')->store('uploadSurat');
+
+            // Update kolom 'surat' di tabel Pengajuan dengan nama file yang baru
+            Pengajuan::where('id', $request->pengajuan_id)->update([
+                'surat' => $fileName,
+            ]);
+
+            return redirect('/admin/pengajuan')->with('success', 'Upload Surat Berhasil');
+        }
+
+        return redirect('/admin/pengajuan')->with('error', 'Tidak ada file surat yang diunggah');
+    }
 }

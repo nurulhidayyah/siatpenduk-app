@@ -79,6 +79,11 @@
 
                     </div>
 
+                    <div class="form-group">
+                        <label for="tanggapan">Tanggapan</label>
+                        <textarea name="tanggapan" class="form-control" id="tanggapan" cols="30" rows="10"></textarea>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Diproses</button>
                 </form>
             </div>

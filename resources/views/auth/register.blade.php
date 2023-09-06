@@ -129,7 +129,7 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input @error('ktp') is-invalid @enderror" id="ktp" name="ktp" onchange="previewImage3()">
                                         <label class="custom-file-label" for="customFile">Upload KTP</label>
-                                        @error('phone')
+                                        @error('ktp')
                                         <small class="text-danger pl-3">
                                             {{ $message }}
                                         </small>
